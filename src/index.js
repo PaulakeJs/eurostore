@@ -6,6 +6,8 @@ require("dotenv").config();
 const Port = 8080;
 const userRoute = require("./routes/userRouters");
 const item = require("./routes/itemRoute");
+const adminRoute = require("./routes/Admin");
+const productRoute = require("./routes/productRoutes");
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +27,8 @@ db.once("open", () => {
 
 app.use("/api/auth", userRoute);
 app.use("/api/item", item);
+app.use("/api/admin", adminRoute);
+app.use("/api/productRoute", productRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

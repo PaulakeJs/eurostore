@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GetItem } from "../Apis/itemsApi";
 
 function Shop() {
@@ -16,6 +16,7 @@ function Shop() {
     };
     getData();
   }, []);
+  const navigate = useNavigate();
 
   return (
     <div className="md:min-h-screen p-4">
@@ -26,7 +27,8 @@ function Shop() {
           data.map((item) => (
             <div
               key={item._id}
-              className="card w-full md:w-96 h-96 bg-base-100 shadow-xl"
+              className="card w-full md:w-96 h-96 bg-base-100 shadow-xl cursor-pointer"
+              onClick={() => navigate(`/shop/list/${item.tags}`)}
             >
               <figure>
                 <img src={item.imageUrl} alt={item.itemName} />

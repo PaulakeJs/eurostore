@@ -49,9 +49,12 @@ router.post("/new", async (req, res) => {
       message: err.message,
     });
   }
-});router.get("/getuser", authenticateToken, async (req, res) => {
+});
+router.get("/getuser", authenticateToken, async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user.userId }).select("-password -otp");
+    const user = await User.findOne({ _id: req.user.userId }).select(
+      "-password -otp"
+    );
     if (!user) {
       return res.send({
         success: false,
@@ -79,6 +82,15 @@ router.post("/login", async (req, res) => {
         message: "Account Not Found",
       });
     }
+
+    
+    if (user.status === "Blocked") {
+      return res.send({
+        success: false,
+        message: "Your Account Has Been Disabled",
+      });
+    }
+
 
     const passwordMatch = bcrypt.compareSync(req.body.password, user.password);
     if (!passwordMatch) {

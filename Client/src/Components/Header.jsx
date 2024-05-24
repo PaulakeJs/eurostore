@@ -50,7 +50,11 @@ function Header() {
                     <a href="/">Homepage</a>
                   </li>
                   <li>
-                    <Link to={`/account/${user._id}`}>{user.name}</Link>
+                    {user.role == "Admin" ? (
+                      <Link to={`/admin`}>{user.name}</Link>
+                    ) : (
+                      <Link to={`/account/${user._id}`}>{user.name}</Link>
+                    )}
                   </li>
                   <li>
                     <a

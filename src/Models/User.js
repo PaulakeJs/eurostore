@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
     token: {
       type: String,
     },
+    status: {
+      type: String,
+      default: "active",
+    },
     role: {
       type: String,
       required: true,

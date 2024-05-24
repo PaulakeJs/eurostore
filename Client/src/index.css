@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 body {
   @apply bg-white text-black;
@@ -18,4 +23,19 @@ body {
 }
 .xc:focus {
   outline: none;
+}
+
+/* Limit the height of the table cell and show ellipsis (...) for overflow */
+/* Limit the height of the table cell and show ellipsis (...) for overflow */
+.table td {
+  max-height: 100px; /* Adjust the height as per your preference */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Remove white-space: nowrap; to allow text wrapping */
+}
+.tx {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
